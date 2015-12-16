@@ -24,5 +24,5 @@ python manage.py runserver``
 > go to (http://127.0.0.1:8000/photo/list/)
 
 **Screenshots**
-![alt tag](http:/images/gallery.png)
-![alt tag](http:/images/map.png)
+![alt tag](images/gallery.png)
+![alt tag](images/map.png)
