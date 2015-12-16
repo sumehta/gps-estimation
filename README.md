@@ -2,7 +2,7 @@
 - Upload an image.
 - Click search. Searches for all similar images in the database.
 - Predicts and indicates possible locations for the image on a google map. 
-- You can base your search on either [SIFT(local)] (http://docs.opencv.org/master/da/df5/tutorial_py_sift_intro.html#gsc.tab=0),[GIST(global)] (http://people.csail.mit.edu/torralba/code/spatialenvelope/) or[color histogram] (https://en.wikipedia.org/wiki/Color_histogram)
+- You can base your search on either [SIFT] (http://docs.opencv.org/master/da/df5/tutorial_py_sift_intro.html#gsc.tab=0)(local),[GIST] (http://people.csail.mit.edu/torralba/code/spatialenvelope/)(global) or [color histogram] (https://en.wikipedia.org/wiki/Color_histogram)
 
 **More details?**
 - Visit the [project webpage](http://sumehta.github.io/CV-Class-Project/)
