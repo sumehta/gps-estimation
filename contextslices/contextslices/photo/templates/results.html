@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <h1>Image search</h1>
+</head>
+<body>
+	<!-- List of uploaded documents -->
+    <p>
+        <!-- Upload form. Note enctype attribute! -->
+		<div class="container">
+		<form action="{% url 'list' %}" method='post' enctype='multipart/form-data'>
+			{% csrf_token %}
+			<input type="file" name="file">
+			<input type="submit" class="btn" value="Search">
+		</form>
+		</div>
+    </p>
+    <hr>
+<p>
+{% if file %}
+	<img src="{{file.docfile.url}}" alt="Smiley face"  style="width:300px;height:280px;">
+{% endif %}
+</p>
+<p>
+<form action="{% url 'color' %}" id="btncolor" method="get">
+    <input type="submit" class="btn" value="Color" width="1000">
+</form>
+<form action="{% url 'list' %}" method="get">
+ <input type="submit"  class="btn"  value="SIFT" >
+</form>
+	<form action="{% url 'gist' %}" method="get">
+ <input type="submit"  class="btn"  value="GIST" >
+	</form>
+	<p>
+<form action="{% url 'map' %}" method="get">
+    <input type="submit" value="View on map" class="btn">
+</form>
+	</p>
+</p>
+<p>Showing top {{num_results}} result(s):</p>
+
+{% if matches %}
+	{% for image in matches %}
+		<a href="{% url 'map' %}"><img src="{{image.imagefile.url}}" style="width:270px;height:250px;"></a>
+	{% endfor %}
+{% else %}
+<p>No matches.</p>
+{% endif %}
+
+</body>
+</html>
+{% endblock %}

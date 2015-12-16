@@ -1,0 +1,145 @@
+.wrapper {
+    position: relative;
+    width: 50%;
+    height: 50%;
+}
+.wrapper canvas {
+    position: absolute;
+    top: 100px;
+    left: 10px;
+	 
+}
+
+#AddRectMark{
+	position: absolute;
+	top: 10%;
+    left: 70%;
+}
+
+
+#AddPolygonMark{
+	position: absolute;
+	top: 13%;
+    left: 70%;
+}
+
+#AddCircleMark{
+	position: absolute;
+	top: 16%;
+    left: 70%;
+}
+#DeleteClues{
+	position: absolute;
+	top: 10%;
+    left: 85%;
+}
+#DeleteMark{
+	position: absolute;
+	top: 13%;
+    left: 85%;
+}
+#NewClue{
+	position: absolute;
+	top: 16%;
+    left: 85%
+}
+#SaveClues{
+	position: absolute;
+	top: 75%;
+    left: 85%
+}
+#Submit{
+	position: absolute;
+	top: 80%;
+    left: 85%
+}
+#MarkList{
+	position: absolute;
+	top:	35%;
+    left: 51%;
+	font-size: 30px;
+}
+#ClueListT{
+	position: absolute;
+	top:	9%;
+    left: 51%;
+	font-size: 30px;
+}
+#ClueList{
+	position: absolute;
+	top: 17%;
+    left: 50%;
+	font-size: 20px;
+	width: 150px;
+    height: 170px;
+    overflow-y: scroll;
+}
+
+
+#ClueTitle {
+	position: absolute;
+	top: 22%;
+    left: 70%;
+}
+#ClueContext{ 
+	position: absolute;
+	
+	top: 28%;
+    left: 70%;
+	width: 20%;
+    height: 50%;
+}
+
+#textArea{
+	position: absolute;
+	width: 300px;
+    height: 100px;
+	top: 50%;
+    left: 60%;
+}
+#markListItems{
+	position: absolute;
+	top:	45%;
+    left: 50%;
+	font-size: 20px;
+	width: 150px;
+    height: 150px;
+    overflow-y: scroll;
+}
+
+#checkers{
+	position: absolute;
+	top:	70%;
+    left: 50%;
+}
+
+#debug{
+	position: absolute;
+	top:	85%;
+    left: 20%;
+}
+
+#TaskDescription{
+	position: absolute;
+	top:  2%;
+    left: 10%;
+	font-size: 40px;
+	
+}
+#dd{
+	position: absolute;
+	top:  90%;
+    left: 20%;
+}
+#AddMark{
+	position: absolute;
+	top: 13%;
+    left: 78%;
+	
+}
+
+#testSubmit{
+	position: absolute;
+	top: 20%;
+    left: 78%;
+}

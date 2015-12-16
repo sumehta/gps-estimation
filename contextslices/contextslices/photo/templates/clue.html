@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+<html>
+	<head>
+		<script src="/static/js/clues.js"> </script>
+		<link rel="stylesheet" type="text/css" href="/static/css/Stage1.css">
+		<script src="/static/js/drawShape.js"> </script>
+		<script src="/static/js/Stage1.js"> </script>
+		
+	</head>
+	
+	<body>
+					
+		<p id = "TaskDescription">Please Add your Clues and Markers </p>
+		{% if image %}
+		<img id="scream" width = "900" height = "700" src="{{ image.docfile.url }}" style= "display:none" alt="The Scream">
+		{% endif %}
+			<div class="wrapper">	
+				<canvas id="canvas1" width="900" height="700">  </canvas> 
+				<canvas id="canvasBase" width="900" height="700" alt="The Scream" > </canvas> 		
+			</div>	
+
+			<p id ="MarkList">MarkList</p>
+			<p id ="ClueListT">ClueList</p>
+			
+			<textarea id ="ClueTitle" placeholder="Add Clue Title"  id="ClueTile" cols="30" rows="2" name="comment" ></textarea> 
+			<textarea id ="ClueContext" placeholder="Add ClueContext" id="ClueContext" cols="50" rows="4" name="comment"></textarea> 
+			<div id="ClueList">
+				<ul>
+					
+				</ul>					
+			</div>
+			<div id ="markListItems" >	
+			
+			</div>	
+
+
+			<button id = "SaveClues"  onclick = "addNewCluetoList()">Save Clues</button>
+			<button id = "NewClue"  onclick = "newClueButton()">New Clue</button>
+			<button id = "DeleteClues" onclick="removeClue()" >Delete Clue</button>
+			<button id = "DeleteMark" onclick="removeMark()" >Delete Mark</button>
+			<button id = "AddRectMark" onclick="AddRectMarkClickF()"  >Rectangle Marks</button>
+			<button id = "AddCircleMark" onclick="AddCircleMarkClickF()">Circle Mark</button>
+			<button id = "AddPolygonMark" onclick="AddPolygonMarkClickF()"  > Polygon Mark</button>
+			<button id = "AddMark" onclick="addMarkF()"  > Add Mark</button>
+			<button id = "Submit" onclick="submitTask()"> Submit</button>
+			<!--<button id = "AddMark" onclick="addMarkF()"  > Add Mark</button>-->
+			
+
+			<form  id = "submitForm" action="{% url 'submit_clue' %}" method="POST">
+				{% csrf_token %}
+				<input id = "subClueTitle" type="hidden" name = "title" >
+				<input id = "subClueContent" type="hidden" name = "content" >
+				<input id = "subMarkerListData" type="hidden" name = "markerListData">
+				<input id = "testSubmit2" type="submit"   hidden>
+			</form>
+
+	</body>
+</html>
+{% endblock %}

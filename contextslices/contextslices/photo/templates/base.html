@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+        <link href="{% static 'css/map.css' %}" rel="stylesheet" type="text/css"/>
+	    <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}"/>
+	    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+	    <script src="{% static 'js/map.js' %}"> </script>
+	    <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+	    <script src="{% static 'js/jquery-ui.js' %}"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="message"></div>
+{% block content %}{% endblock %}
+        </div>
+    </body>
+</html>
