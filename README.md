@@ -2,7 +2,7 @@
 - Upload an image.
 - Click search. Searches for all similar images in the database.
 - Predicts and indicates possible locations for the image on a google map. 
-- You can base your search on either (http://docs.opencv.org/master/da/df5/tutorial_py_sift_intro.html#gsc.tab=0)[SIFT(local)],(http://people.csail.mit.edu/torralba/code/spatialenvelope/)[GIST(global)] or (https://en.wikipedia.org/wiki/Color_histogram)[color histogram]
+- You can base your search on either [SIFT(local)] (http://docs.opencv.org/master/da/df5/tutorial_py_sift_intro.html#gsc.tab=0),[GIST(global)] (http://people.csail.mit.edu/torralba/code/spatialenvelope/) or[color histogram] (https://en.wikipedia.org/wiki/Color_histogram)
 
 **How to get it working on your system**
 
@@ -21,8 +21,8 @@ SURF is available directly with opencv 2.4 which is why we are not using a newer
 * clone the repo
 * Start server
 
-``` cd gps-estimation/contextslices/ ```
-```  python manage.py runserver ```
+- ``` cd gps-estimation/contextslices/ ```
+- ```  python manage.py runserver ```
 
 * go to (http://127.0.0.1:8000/photo/list/)
 

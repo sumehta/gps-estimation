@@ -9,16 +9,15 @@ from sklearn.cluster import MiniBatchKMeans
 class BagOfWords(object):
     """
     Computes image feature histograms based on the feature specified.
-    Available features are SURF, color-histogram.
+    Available features are SURF, color-histogram and GIST
     """
-    def __init__(self, feature_name='SIFT', feature_file=''):
+    def __init__(self, feature_name='SIFT'):
         """
         :param feature_name: The type of features to use to compute image histograms
         :param feature_file: Optionally provide file with pre-extracted features
         :return:
         """
         self.feature_name = feature_name
-        self.feature_file = feature_file
         self.centers = []
         self.labels = []
         self.mbkms = None
@@ -42,12 +41,19 @@ class BagOfWords(object):
         self.centers = self.mbkms.cluster_centers_
         self.labels = self.mbkms.labels_
         labels = self.mbkms.predict(input_feature)
+
         if write_to_file:
             np.savetxt('media/centers.txt', self.centres)
             np.savetxt('media/labels.txt', self.labels)
         return labels
 
-    def extract_features(self, image_name):
+    def extract_features(self, image_name, feature='SIFT'):
+        '''
+
+        :param image_name: The image to extract features from
+        :param feature: The feature to extract image from
+        :return: A vector or a matrix of extracted features
+        '''
         image_path = settings.MEDIA_ROOT + '/documents/' + image_name
         if self.feature_name == 'SIFT':
             self.img = cv2.imread(image_path)
@@ -109,12 +115,17 @@ class BagOfWords(object):
         return assigned_labels
 
     def get_similar_images(self, query_hist, feature_type='SIFT'):
+        """
 
+        :param query_hist: The image histogram to be queried
+        :param feature_type: GIST or color-histogram, default is SIFT
+        :return: list of matches in descending order of match coefficient
+        """
         if feature_type == 'color':
             histograms = open('media/color_histogram.txt')
             img_hists = np.genfromtxt(histograms, dtype=str)
             num_images, b = img_hists.shape
-            distance_threshold = 0.1
+            distance_threshold = 0.09
             matching_images = []
             query_hist_normalized = query_hist/np.sum(query_hist)
             distances = []
@@ -144,7 +155,7 @@ class BagOfWords(object):
             histograms = open('media/gist.txt')
             img_hists = np.genfromtxt(histograms, dtype=str)
             num_images = len(img_hists)
-            distance_threshold = 0.70
+            distance_threshold = 0.72
             matching_images = []
             distances = []
             for i in range(num_images):
@@ -165,14 +176,13 @@ class BagOfWords(object):
             return sorted_images
 
         else:
-
             query_hist = np.array(query_hist, dtype=float)
 
             histograms = open('media/image_histogram.txt')
             img_hists = np.genfromtxt(histograms, dtype=str)
 
             num_images, b = img_hists.shape
-            matching_coefficient = 0.70
+            matching_coefficient = 0.72
             matching_images = []
             query_hist_normalized = query_hist/np.linalg.norm(query_hist)
             similarity = []

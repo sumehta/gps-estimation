@@ -1,102 +1,49 @@
 {% extends "base.html" %}
 {% block content %}
-
 <html>
-  <head>
+ <head>
+<script src="http://maps.googleapis.com/maps/api/js">
+</script>
 
-    <title>Crowd Worker Map View</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-
-    <script type="text/javascript"
-      src="http://maps.google.com/maps/api/js?
-                      key=AIzaSyDLy_jt9DNFP_qP11MzCb-Hfk1PXC5HBNc&sensor=false"></script> 
-    <script>
-
-    lat1 = 39.189690821096804
-    long1 = -77.3052978515625
-    timestamps[0] = 1192665600
-    //lat1 = {{lat1}};
-    //long1 = {{long1}};
-
-    lat2 = 39.12579898118164
-    long2 = -76.9537353515625
-    timestamps[1] = 1192924800
-    //lat2 = {{lat2}};
-    //long2 = {{long2}};
-
-    lat3 = 39.27478966170308
-    long3 = -76.7669677734375
-    timestamps[2] = 1193270400
-    // lat3 = {{lat3}};
-    // long3 = {{long3}};
-
-    lat4 = 38.92522904714054
-    long4 =-76.7340087890625
-    timestamps[3] = 1193702400
-    // lat4 = {{lat4}};
-    // long4 = {{long4};
+ {% if location %}
+     <p>
+         here
+     </p>
+     {% endif %}
 
 
-    $(function() {
-      // need to use unix time stamp as ranges and convert to real date time display for showing worker
-      $( "#slider-range" ).slider({
-        range: true,
-        min: timestamps[0],
-        max: timestamps[3],
-        values: [ timestamps[0], timestamps[3]],
-        slide: function( event, ui ) {
-          $( "#amount" ).val( timeConverter(ui.values[0]) + " - " + timeConverter(ui.values[1]) );
-            checkSliderChanged(ui.values[0], ui.values[1]);
-        }
-      });
+     <script type="text/javascript">
 
-      $( "#amount" ).val(timeConverter($( "#slider-range" ).slider( "values", 0 )) +
-        " - " + timeConverter($( "#slider-range" ).slider( "values", 1 )));
-    });
+
+        lat1 = {{lat1}};
+        long1 = {{long1}};
+
+         lat2 = {{lat2}};
+        long2 = {{long2}};
+
+         lat3 = {{lat3}};
+        long3 = {{long3}};
+
+         lat4 = {{lat4}};
+        long4 = {{long4}};
+
+
+     </script>
+
+     <script src="/static/js/map.js">
     </script>
-  </head>
+</head>
 
-  <body onload="GetMap();initialize()">
-    <p>Task to be completed: Some Task Name</p>
-    <div id="mapContainer"></div> 
-    <div id="floating-panel">
-      <input onclick="clearMarkers();" type=button value="Hide Markers">
-      <input onclick="deleteMarkers();" type=button value="Delete Markers">
-    </div>
+<body>
+<div id="googleMap" style="width:800px;height:600px;"></div>
 
-    <div class="search">
-      <form id="tags">
-        <input type="text" placeholder="Search by tags..." required>
-        <input type="button" value="Search">
-      </form>
-    </div>
-    <div class="search">
-      <form id="name">
-        <input type="text" placeholder="Search by photographer..." required>
-        <input type="button" value="Search">
-      </form>
-    </div>
+<form action="{% url 'search' %}" method='get'>
+    {% csrf_token %}
+    <input type="submit" class="btn"  value="Back">
+</form>
 
-    <div id="check">
-      <form action="demo_form.asp" method="get">
-        <input type="checkbox" name="tags">Filter by tags<br><br>
-        <input type="checkbox" name="photographer"checked>Filter by author<br><br>
-        <input type="checkbox" name="guess"checked>Filter by guess<br><br>
-      </form>
-    </div>
+</body>
 
-    <button id="pin" type="button" onclick="dropPinOnClick();">Drop Pin</button>
-    <button id="circle" type="button" onclick="dropCircleOnClick();">Drop Circle</button>
-    <button id="polygon" type="button" onclick="dropPolygonOnClick();">Drop Polygon</button>
 
-    <p>
-      <label for="amount">Date Range:</label>
-      <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-    </p>
-     
-    <div id="slider-range"></div>
-  </body>
-
-</html> 
+</html>
 {% endblock %}
