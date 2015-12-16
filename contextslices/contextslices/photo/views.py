@@ -87,17 +87,19 @@ def list(request):
 
 
     if request.method == 'GET':
-        matches = get_matches(request.session.get('file').id)
+        matched_images = []
+        if request.session.get('file'):
+            matches = get_matches(request.session.get('file').id)
 
-        if len(matches) > 20:
-            matches = matches[:20]
-            matched_images = []
-            matched_image_names = []
-            for im_name in matches:
-                matched_images.append(Image.objects.get(pk=im_name))
-                matched_image_names.append(im_name)
-            request.session['matches'] = matched_images
-            store_location_information(request, matched_image_names)
+            if len(matches) > 20:
+                matches = matches[:20]
+                matched_images = []
+                matched_image_names = []
+                for im_name in matches:
+                    matched_images.append(Image.objects.get(pk=im_name))
+                    matched_image_names.append(im_name)
+                request.session['matches'] = matched_images
+                store_location_information(request, matched_image_names)
 
         return render_to_response(
             'results.html',
