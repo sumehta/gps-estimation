@@ -48,12 +48,12 @@ class BagOfWords(object):
         return labels
 
     def extract_features(self, image_name, feature='SIFT'):
-        '''
+        """
 
         :param image_name: The image to extract features from
         :param feature: The feature to extract image from
         :return: A vector or a matrix of extracted features
-        '''
+        """
         image_path = settings.MEDIA_ROOT + '/documents/' + image_name
         if self.feature_name == 'SIFT':
             self.img = cv2.imread(image_path)
